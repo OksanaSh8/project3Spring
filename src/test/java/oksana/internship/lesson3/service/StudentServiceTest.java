@@ -6,7 +6,11 @@ import oksana.internship.lesson3.model.Student;
 import oksana.internship.lesson3.model.Subject;
 import oksana.internship.lesson3.service.dto.StudentDto;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +18,10 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
-@IT
+@ContextConfiguration(classes = ConnectionManagerTest.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@ExtendWith(SpringExtension.class)
+@WebAppConfiguration
 class StudentServiceTest {
     private final StudentService studentService;
 
