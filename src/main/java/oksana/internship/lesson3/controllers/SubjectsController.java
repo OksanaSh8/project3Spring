@@ -70,9 +70,5 @@ public class SubjectsController {
         }
         return "предмет c id = "+id+" удален";
     }
-      @ExceptionHandler
-    private ResponseEntity<Errors> handleException(Exceptions e) {
-        Errors response = new Errors(e.getMessage());
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    }
+
 }
