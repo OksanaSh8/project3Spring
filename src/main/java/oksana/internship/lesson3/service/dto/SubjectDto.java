@@ -24,6 +24,11 @@ public class SubjectDto {
         this.subjectName = subjectName;
     }
 
+    public SubjectDto(int id, String subjectName) {
+        this.id = id;
+        this.subjectName = subjectName;
+    }
+
     public SubjectDto(int id, String subjectName, List<Group> groupList) {
         this.id = id;
         this.subjectName = subjectName;

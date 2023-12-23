@@ -105,5 +105,4 @@ public class Student {
     public int hashCode() {
         return Objects.hash(id, fullName, yearOfBirth, groupName);
     }
-
 }

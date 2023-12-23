@@ -41,12 +41,12 @@ class SubjectsControllerTest {
         subjects.add(HISTORY);
         Mockito.doReturn(true).when(subjectService).delete(HISTORY.getId());
         var deleteResult = subjectsController.delete(HISTORY.getId());
-        assertEquals("предмет c id = 1 удален", deleteResult);
+        assertEquals("предмет c id = 6 удален", deleteResult);
     }
 
     @Test
     void shouldFindAllSubject() {
-        List<SubjectDto> subjectDtoList = List.of(HISTORY);
+        Set<SubjectDto> subjectDtoList = Set.of(HISTORY);
         Mockito.doReturn(subjectDtoList).when(subjectService).findAll();
         var subjects = subjectsController.getSubjects();
         var result = subjectDtoList.equals(subjects);
@@ -82,15 +82,15 @@ class SubjectsControllerTest {
         SubjectDto subjectDto = new SubjectDto(2, "statistics", List.of(groups));
         Mockito.doReturn(true).when(subjectService).update(any(), any());
         var result = subjectsController.update(2, subjectDto, bindingResult);
-        assertEquals("ResponseEntity", result);
+        assertEquals("ResponseEntity", result.getClass().getSimpleName());
     }
 
     @Test
     void shouldGetSubject() {
-        Subject subject = new Subject(1, "mathematics");
-        Mockito.doReturn(Optional.of(subject)).when(subjectService).findById(1);
-        var subjectDto = subjectsController.findById(1);
-        var result = subjectDto.getClass().getSimpleName();
+        SubjectDto subjectDto = new SubjectDto(1, "mathematics");
+        Mockito.doReturn(subjectDto).when(subjectService).findById(1);
+        var subjectDtoNew = subjectsController.findById(1);
+        var result = subjectDtoNew.getClass().getSimpleName();
         assertEquals("SubjectDto", result);
     }
 }

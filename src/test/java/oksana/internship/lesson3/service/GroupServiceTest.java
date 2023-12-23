@@ -38,6 +38,7 @@ class GroupServiceTest {
     static void afterAll() {
         ConnectionManagerTest.container.stop();
     }
+
     @Test
     @Order(1)
     void shouldFindAllByGroupName() {

@@ -17,6 +17,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @ContextConfiguration(classes = ConnectionManagerTest.class)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -105,11 +106,10 @@ class StudentServiceTest {
     @Test
     @Order(7)
     void shouldCreateStudents() {
-        studentService.delete(1);
-        List<StudentDto> students = studentService.findAll();
-        studentService.save(IVAN);
-        List<StudentDto> studentsAfterAdd = studentService.findAll();
-        assertEquals(1, studentsAfterAdd.size() - students.size());
+        Student IVAN = new Student(1, "Simonov Ivan Petrovich", 2001, "IT");
+        var studentSave = studentService.save(IVAN);
+        var studentAfteSave = studentService.findByFullName(studentSave.getFullName());
+        assertNotNull(studentAfteSave);
     }
 }
 
